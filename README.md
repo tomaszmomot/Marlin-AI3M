@@ -1,5 +1,7 @@
 # Anycubic i3 Mega Marlin 1.1.9 by davidramiro
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3MFT8QMP5ZRCE&source=url) [![Downloads](https://img.shields.io/github/downloads/davidramiro/Marlin-AI3M/total.svg?style=flat)](https://github.com/davidramiro/Marlin-AI3M/releases) [![Open Issues](https://img.shields.io/github/issues-raw/davidramiro/Marlin-AI3M.svg?style=flat)](https://github.com/davidramiro/Marlin-AI3M/issues?q=is%3Aopen+is%3Aissue) [![Closed Issues](https://img.shields.io/github/issues-closed-raw/davidramiro/Marlin-AI3M.svg?style=flat)](https://github.com/davidramiro/Marlin-AI3M/issues?q=is%3Aissue+is%3Aclosed) [![License](https://img.shields.io/github/license/davidramiro/Marlin-AI3M.svg?style=flat)](https://github.com/davidramiro/Marlin-AI3M/blob/master/LICENSE) [![Latest Release](https://img.shields.io/github/release/davidramiro/Marlin-AI3m.svg?style=flat)](https://github.com/davidramiro/Marlin-AI3M/releases/latest/) ![](https://img.shields.io/github/last-commit/davidramiro/Marlin-AI3m.svg?style=flat)
+
 This is my slightly customized version of the [Marlin Firmware](https://github.com/MarlinFirmware/Marlin), gratefully based on [derhopp's repo](https://github.com/derhopp/Marlin-with-Anycubic-i3-Mega-TFT) with his remarkable efforts to get the Anycubic i3 Mega TFT screen to work.
 
 ## Mega-S branch
@@ -192,24 +194,35 @@ Note: These commands are tweaked for PLA printing at up to 210/60 °C. If you ru
 
 [m600 demo]: https://kore.cc/i3mega/img/m600demo.jpg "M600 demo"
 
-**A USB host (OctoPrint, Pronterface, ...) is required to use this.**
+**Printing via USB is highly recommended for this.**
 
 #### Configuration:
 - Send `M603 L0 U0` to use manual loading & unloading.
-- Send `M603 L530 U555` to use automatic loading & unloading
+- Send `M603 L538 U555` to use automatic loading & unloading
 - Save with `M500`
 
 #### Filament change process (manual loading):
-- Place `M600` in your GCode at the desired layer or send it manually
+- For printing via SD:
+  - Place `M600` in your GCode at the desired layer
+- For printing via USB:
+  - Place `M600` in your GCode at the desired layer or send it via terminal
+  - Alternatively: Use `FilamentChange Pause` in the Special Menu
 - The nozzle will park and your printer will beep
 - Remove the filament from the bowden tube
 - Insert the new filament right up to the nozzle, just until a bit of plastic oozes out
 - Remove the excess filament from the nozzle with tweezers
-- Send `M108` via your USB host.
-- Note for OctoPrint users: After sending `M108`, enable the advanced options at the bottom of the terminal and press `Fake Acknowledgement`
+- For printing via SD:
+  - Click `CONTINUE` on the screen
+- For printing via USB:
+  - Send `M108` via your USB host or use `FilamentChange Resume` in the Special Menu
+  - Note for OctoPrint users: After sending `M108`, enable the advanced options at the bottom of the terminal and press `Fake Acknowledgement`
 
 #### Filament change process (automatic loading):
-- Place `M600` in your GCode at the desired layer or send it manually
+- For printing via SD:
+  - Place `M600` in your GCode at the desired layer
+- For printing via USB:
+  - Place `M600` in your GCode at the desired layer or send it via terminal
+  - Alternatively: Use `FilamentChange Pause` in the Special Menu
 - The nozzle will park
 - The printer will remove the filament right up to the extruder and beep when finished
 - Insert the new filament just up to the end of the bowden fitting, as shown here:
@@ -218,8 +231,11 @@ Note: These commands are tweaked for PLA printing at up to 210/60 °C. If you ru
 
 [m600 load]: https://kore.cc/i3mega/img/load.jpg "M600 Load"
 
-- Send `M108` via your USB host.
-- Note for OctoPrint users: After sending `M108`, enable the advanced options at the bottom of the terminal and press `Fake Acknowledgement`
+- For printing via SD:
+  - Click `CONTINUE` on the screen
+- For printing via USB:
+  - Send `M108` via your USB host or use `FilamentChange Resume` in the Special Menu
+  - Note for OctoPrint users: After sending `M108`, enable the advanced options at the bottom of the terminal and press `Fake Acknowledgement`
 - The printer will now pull in the new filament, watch out since it might ooze quite a bit from the nozzle
 - Remove the excess filament from the nozzle with tweezers
 
