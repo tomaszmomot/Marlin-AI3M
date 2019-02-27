@@ -14,6 +14,7 @@ Note: This is just a firmware, not magic. A big part of print quality still depe
 
 #### Make sure to take a look at the [Wiki](https://github.com/davidramiro/Marlin-AI3M/wiki/), especially the [FAQ](https://github.com/davidramiro/Marlin-AI3M/wiki/Frequently-Asked-Questions).
 
+A German translation of the instructions can be found [here](https://kore.cc/i3mega/download/marlin-ai3m_german.pdf).
 
 ## Known issues:
 
@@ -21,7 +22,7 @@ Note: This is just a firmware, not magic. A big part of print quality still depe
 - Estimated print times from your slicer might be slightly off.
 - Special characters on any file or folders name on the SD card will cause the file menu to freeze. Simply replace or remove every special character (Chinese, Arabic, Russian, accents, German & Scandinavian umlauts, ...) from the name. Symbols like dashes or underscores are no problem.
 **Important note: On the SD card that comes with the printer there is a folder with Chinese characters in it by default. Please rename or remove it.**
-- Cancelling prints via display is buggy sometimes, simply reboot the printer when the menu shows an error. Protip: Switch to OctoPrint.
+- Cancelling prints after pausing may show an error. Simply resume the print before canceling. Protip: Switch to OctoPrint.
 
 
 ## Why use this?
@@ -34,7 +35,7 @@ While the i3 Mega is a great printer for its price and produces fantastic result
 - Even better print quality by adding Linear Advance, S-Curve Acceleration and some tweaks on jerk and acceleration.
 - Thermal runaway protection: Reducing fire risk by detecting a faulty or misaligned thermistor.
 - Very loud stock stepper motor drivers, easily replaced by Watterott or FYSETC TMC2208. To do that, you'd usually have to flip the connectors on the board, this is not necessary using this firmware.
-- No need to slice and upload custom bed leveling tests, simply start one with a simple G26 command.
+- No need to slice and upload custom bed leveling tests, test it with a single GCode command
 - Easily start an auto PID tune or mesh bed leveling via the special menu (insert SD card, select special menu and press the round arrow)
 - Filament change feature enabled: Switch colors/material mid print with `M600` (instructions below)
 
@@ -152,6 +153,7 @@ G26 C H200 P25 R25
 #### Configuration:
 - Send `M603 L0 U0` to use manual loading & unloading.
 - Send `M603 L538 U555` to use automatic loading & unloading
+  - The `L` and `U` paramters define the load and unload length in mm. The values above work well on a stock setup, if you modded your extruder, bowden tube or hotend, you might need to adjust those.
 - Save with `M500`
 
 #### Filament change process (manual loading):
@@ -211,7 +213,7 @@ After flashing the new version, issue a `M502` and `M500`. After that, enter eve
 
 ## Detailed changes:
 
-- Thermal runaway protection enabled and tweaked
+- Thermal runaway protection thresholds tweaked
 - Manual mesh bed leveling enabled ([check this link](https://github.com/MarlinFirmware/Marlin/wiki/Manual-Mesh-Bed-Leveling) to learn more about it)
 - Heatbed PID mode enabled
 - TMC2208 configured in standalone mode
@@ -223,6 +225,8 @@ After flashing the new version, issue a `M502` and `M500`. After that, enter eve
 - Minor tweaks on default jerk and acceleration
 - Printcounter enabled (`M78`)
 - `M600` filament change feature enabled
+- Screen resume for `M600` implemented
+- Filament runout, stop and pause behaviour tweaked
 
 
 ## Changes by [derhopp](https://github.com/derhopp/):
